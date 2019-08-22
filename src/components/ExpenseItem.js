@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import moment from 'moment';
+import numeral from 'numeral';
 const ExpenseListItem = ({ id, description, amount, createdAt }) => {
     return (<div>
-        <Link to={`/edit/${id}`}><p>Description: {description}</p></Link>
-        <p>Amount: {amount}</p>
-        <p>Created at: {new Date(createdAt).toISOString()}</p>
+        <Link to={`/edit/${id}`}>
+            <p>Description: {description}</p>
+        </Link>
+        <p>Amount: {numeral(amount / 100).format('$0,0.00')}</p>
+        <p>Created at: {moment(createdAt).format('MMMM Do, YYYY')}</p>
     </div>)
 };
 
